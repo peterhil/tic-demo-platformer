@@ -1,2 +1,7 @@
 build/
 src/.local/
+
+*~
+\#*\#
+.\#*
+.DS_Store
