@@ -13,37 +13,39 @@ function init()
 	p={
 		x=120,
 		y=68,
-		vx=0,  --Velocity X
-		vy=0,  --Velocity Y
+    }
+	v={
+        x=0,  --Velocity X
+		y=0,  --Velocity Y
 	}
 end
 
 init()
 
 function TIC()
-	if btn(2) then p.vx=-1
-	elseif btn(3) then p.vx=1
-	else p.vx=0
+	if btn(2) then v.x=-1
+	elseif btn(3) then v.x=1
+	else v.x=0
 	end
 
-	if solid(p.x+p.vx, p.y+p.vy) or solid(p.x+7+p.vx, p.y+p.vy) or solid(p.x+p.vx, p.y+7+p.vy) or solid(p.x+7+p.vx, p.y+7+p.vy) then
-		p.vx=0
+	if solid(p.x+v.x, p.y+v.y) or solid(p.x+7+v.x, p.y+v.y) or solid(p.x+v.x, p.y+7+v.y) or solid(p.x+7+v.x, p.y+7+v.y) then
+		v.x=0
 	end
 
-	if solid(p.x, p.y+8+p.vy) or solid(p.x+7, p.y+8+p.vy) then
-		p.vy=0
+	if solid(p.x, p.y+8+v.y) or solid(p.x+7, p.y+8+v.y) then
+		v.y=0
 	else
-		p.vy=p.vy+0.2
+		v.y=v.y+0.2
 	end
 
-	if p.vy==0 and btnp(4) then p.vy=-2.5 end
+	if v.y==0 and btnp(4) then v.y=-2.5 end
 
-	if p.vy<0 and (solid(p.x+p.vx, p.y+p.vy) or solid(p.x+7+p.vx, p.y+p.vy)) then
-		p.vy=0
+	if v.y<0 and (solid(p.x+v.x, p.y+v.y) or solid(p.x+7+v.x, p.y+v.y)) then
+		v.y=0
 	end
 
-	p.x=p.x+p.vx
-	p.y=p.y+p.vy
+	p.x=p.x+v.x
+	p.y=p.y+v.y
 
 	cls()
 	map()
