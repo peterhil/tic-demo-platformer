@@ -1,5 +1,5 @@
 -- title:  Platformer Demo
--- author: trelemar / pkh
+-- author: trelemar / peterhil
 -- desc:   Demo made for tutorial @ infinitelimit.net
 -- input:  gamepad
 -- script: lua
