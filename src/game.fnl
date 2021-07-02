@@ -28,7 +28,17 @@
 	 C C (or color 12)))
 
 (fn _G.TIC []
+	(if (btn 2) (set vel.x (+ vel.x 1))
+		(btn 3) (set vel.x (- vel.x 1))
+		(set vel.x 0))
+
 	;; TODO Add collision detection
+
+	(set vel.y 0.2)
+
+	(set plr.x (+ plr.x vel.x))
+	(set plr.y (+ plr.y vel.y))
+
 	(cls)
 	(map)
 	(draw-player plr))
