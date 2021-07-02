@@ -9,13 +9,13 @@
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
 
-(fn tile [p]
+(lambda tile [p]
 	"Map tile from point"
 	(let [x (// (. p :x) C)
 		  y (// (. p :y) C)]
 	  (mget x y)))
 
-(fn solid? [p]
+(lambda solid? [p]
 	"Is the point at solid tile?"
 	(contains? solids (tile p)))
 
