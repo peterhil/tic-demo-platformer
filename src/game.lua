@@ -13,9 +13,9 @@ function init()
 	p={
 		x=120,
 		y=68,
-    }
+	}
 	v={
-        x=0,  --Velocity X
+		x=0,  --Velocity X
 		y=0,  --Velocity Y
 	}
 end
