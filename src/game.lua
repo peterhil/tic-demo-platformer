@@ -47,7 +47,7 @@ function TIC()
 
 	cls()
 	map()
-	rect(p.x, p.y, 8, 8, 15)
+	rect(p.x, p.y, 8, 8, 12)
 end
 
 -- <TILES>
