@@ -9,6 +9,12 @@
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
 
+(lambda decr [tbl field amount]
+    (tset tbl field (- (. tbl field) amount)))
+
+(lambda incr [tbl field amount]
+    (tset tbl field (+ (. tbl field) amount)))
+
 (lambda tile [p]
 	"Map tile from point"
 	(let [x (// (. p :x) C)
@@ -28,16 +34,16 @@
 	 C C (or color 12)))
 
 (fn _G.TIC []
-	(if (btn 2) (set vel.x (+ vel.x 1))
-		(btn 3) (set vel.x (- vel.x 1))
+	(if (btn 2) (incr vel :x 1)
+		(btn 3) (decr vel :x 1)
 		(set vel.x 0))
 
 	;; TODO Add collision detection
 
 	(set vel.y 0.2)
 
-	(set plr.x (+ plr.x vel.x))
-	(set plr.y (+ plr.y vel.y))
+	(incr plr :x vel.x)
+	(incr plr :y vel.y)
 
 	(cls)
 	(map)
