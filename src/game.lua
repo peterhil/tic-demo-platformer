@@ -37,27 +37,39 @@ end
 init()
 
 function TIC()
+	-- Horizontal movement
 	if btn(2) then v.x=-1
 	elseif btn(3) then v.x=1
 	else v.x=0
 	end
 
-	if solid(add(p, v, {})) or solid(add(p, v, {x=7, y=0})) or solid(add(p, v, {x=0, y=7})) or solid(add(p, v, {x=7, y=7})) then
+	-- Collision?
+	if (solid(add(p, v, {})) or
+		solid(add(p, v, {x=7, y=0})) or
+		solid(add(p, v, {x=0, y=7})) or
+		solid(add(p, v, {x=7, y=7}))) then
 		v.x=0
 	end
 
-	if solid({ x=p.x, y=p.y+8+v.y }) or solid({ x=p.x+7, y=p.y+8+v.y }) then
+	-- Vertical movement
+	if (solid({ x=p.x, y=p.y+8+v.y }) or
+		solid({ x=p.x+7, y=p.y+8+v.y })) then
 		v.y=0
 	else
 		v.y=v.y+0.2
 	end
 
+	-- Jump
 	if v.y==0 and btnp(4) then v.y=-2.5 end
 
-	if v.y<0 and (solid({ x=p.x+v.x, y=p.y+v.y }) or solid({ x=p.x+7+v.x, y=p.y+v.y })) then
+	-- Floor
+	if v.y<0 and
+		(solid({ x=p.x+v.x, y=p.y+v.y }) or
+		 solid({ x=p.x+7+v.x, y=p.y+v.y })) then
 		v.y=0
 	end
 
+	-- Move player with velocity
 	p.x=p.x+v.x
 	p.y=p.y+v.y
 
