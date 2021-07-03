@@ -40,7 +40,7 @@
 
     ;; TODO Add collision detection
 
-    (set vel.y 0.2)
+    (incr vel :y 0.2)
 
     (incr plr :x vel.x)
     (incr plr :y vel.y)
