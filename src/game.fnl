@@ -34,8 +34,8 @@
    C C (or color 12)))
 
 (fn _G.TIC []
-    (if (btn 2) (incr vel :x 1)
-        (btn 3) (decr vel :x 1)
+    (if (btn 2) (set vel.x -1)
+        (btn 3) (set vel.x 1)
         (set vel.x 0))
 
     ;; TODO Add collision detection
