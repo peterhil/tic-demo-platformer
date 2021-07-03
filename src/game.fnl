@@ -10,44 +10,44 @@
 (local vel {:x 0 :y 0}) ; velocity
 
 (lambda decr [tbl field amount]
-    (tset tbl field (- (. tbl field) amount)))
+  (tset tbl field (- (. tbl field) amount)))
 
 (lambda incr [tbl field amount]
-    (tset tbl field (+ (. tbl field) amount)))
+  (tset tbl field (+ (. tbl field) amount)))
 
 (lambda tile [p]
-	"Map tile from point"
-	(let [x (// (. p :x) C)
-		  y (// (. p :y) C)]
-	  (mget x y)))
+  "Map tile from point"
+  (let [x (// (. p :x) C)
+        y (// (. p :y) C)]
+    (mget x y)))
 
 (lambda solid? [p]
-	"Is the point at solid tile?"
-	(contains? solids (tile p)))
+  "Is the point at solid tile?"
+  (contains? solids (tile p)))
 
 ;; TODO Add helper functions
 
 (lambda draw-player [plr ?color]
-	(rect
-	 (. plr :x)
-	 (. plr :y)
-	 C C (or color 12)))
+  (rect
+   (. plr :x)
+   (. plr :y)
+   C C (or color 12)))
 
 (fn _G.TIC []
-	(if (btn 2) (incr vel :x 1)
-		(btn 3) (decr vel :x 1)
-		(set vel.x 0))
+    (if (btn 2) (incr vel :x 1)
+        (btn 3) (decr vel :x 1)
+        (set vel.x 0))
 
-	;; TODO Add collision detection
+    ;; TODO Add collision detection
 
-	(set vel.y 0.2)
+    (set vel.y 0.2)
 
-	(incr plr :x vel.x)
-	(incr plr :y vel.y)
+    (incr plr :x vel.x)
+    (incr plr :y vel.y)
 
-	(cls)
-	(map)
-	(draw-player plr))
+    (cls)
+    (map)
+    (draw-player plr))
 
 ;; <MAP>
 ;; 001:000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
