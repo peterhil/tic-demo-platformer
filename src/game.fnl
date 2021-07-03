@@ -21,6 +21,9 @@
         y (// (. p :y) C)]
     (mget x y)))
 
+(lambda contains? [map key]
+  (= nil (. map key)))
+
 (lambda solid? [p]
   "Is the point at solid tile?"
   (contains? solids (tile p)))
