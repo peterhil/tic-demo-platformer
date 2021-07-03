@@ -62,7 +62,7 @@ function TIC()
 	-- Jump
 	if v.y==0 and btnp(4) then v.y=-2.5 end
 
-	-- Floor
+	-- Upward collision
 	if v.y<0 and
 		(solid({ x=p.x+v.x, y=p.y+v.y }) or
 		 solid({ x=p.x+7+v.x, y=p.y+v.y })) then

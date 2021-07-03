@@ -54,7 +54,7 @@
 
     ;; Jump
 
-    ;; Floor
+    ;; Upward collision
 
     ;; Move player with velocity
     (incr plr :x vel.x)
