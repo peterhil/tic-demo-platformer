@@ -42,14 +42,21 @@
    C C (or color 12)))
 
 (fn _G.TIC []
+    ;; Horizontal movement
     (if (btn 2) (set vel.x -1)
         (btn 3) (set vel.x 1)
         (set vel.x 0))
 
-    ;; TODO Add collision detection
+    ;; Collision?
 
+    ;; Vertical movement
     (incr vel :y 0.2)
 
+    ;; Jump
+
+    ;; Floor
+
+    ;; Move player with velocity
     (incr plr :x vel.x)
     (incr plr :y vel.y)
 
