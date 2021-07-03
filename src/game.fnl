@@ -9,6 +9,11 @@
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
 
+(lambda addp [a b ?dx ?dy]
+  "Add points with additional offsets"
+  { :x (+ a.x b.x (or ?dx 0))
+    :y (+ a.y b.y (or ?dy 0)) })
+
 (lambda decr [tbl field amount]
   (tset tbl field (- (. tbl field) amount)))
 
