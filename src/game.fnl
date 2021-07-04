@@ -76,6 +76,9 @@
         (incr vel :y 0.2))
 
     ;; Jump
+    (when (and (btnp 4)
+               (= vel.y 0))
+      (decr vel :y 2.5))
 
     ;; Upward collision
 
