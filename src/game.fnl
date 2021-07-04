@@ -22,8 +22,8 @@
 
 (lambda tile [p]
   "Map tile from point"
-  (let [x (// (. p :x) C)
-        y (// (. p :y) C)]
+  (let [x (// p.x C)
+        y (// p.y C)]
     (mget x y)))
 
 (lambda contains? [map key]
@@ -37,8 +37,8 @@
 
 (lambda draw-player [plr ?color]
   (rect
-   (. plr :x)
-   (. plr :y)
+   plr.x
+   plr.y
    C C (or color 12)))
 
 (fn _G.TIC []
