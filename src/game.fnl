@@ -51,7 +51,9 @@
         (solid? nw) t
         f)))
 
-;; TODO Add helper functions
+(lambda floor? [p v]
+  (or (solid? (addp p v 0 C))
+      (solid? (addp p v B C))))
 
 (lambda draw-player [plr ?color]
   (rect
@@ -101,6 +103,7 @@
                     :velocity: " " vel.x ", " vel.y "\n"
                     :tile: " " (tile plr) "\n"
                     :solid: " " (if (solid? plr) "true" "false") "\n"
+                    :floor: " " (if (floor? plr vel) "true" "false") "\n"
                     )))))
 
 ;; <MAP>
