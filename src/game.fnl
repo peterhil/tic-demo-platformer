@@ -4,9 +4,13 @@
 ;; input:  gamepad
 ;; script: fennel
 
+(local t true)
+(local f false)
+
 (local C 8) ; cell size
 (local B (- C 1)) ; block size
 (local solids [1])
+
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
 (local debugging true)
@@ -35,6 +39,18 @@
   "Is the point at solid tile?"
   (contains? solids (tile p)))
 
+(lambda collision? [p v]
+  "Does player collide with a solid tile?"
+  (let [ne (addp p v 0 0)
+        se (addp p v 0 B)
+        sw (addp p v B 0)
+        nw (addp p v B B)]
+    (if (solid? ne) t
+        (solid? se) t
+        (solid? sw) t
+        (solid? nw) t
+        f)))
+
 ;; TODO Add helper functions
 
 (lambda draw-player [plr ?color]
@@ -50,6 +66,8 @@
         (set vel.x 0))
 
     ;; Collision?
+    (if (collision? plr vel)
+        (set vel.x 0))
 
     ;; Vertical movement
     (if (or (solid? {:x plr.x :y (+ plr.y vel.y C)})
