@@ -44,14 +44,12 @@
 
 (fn collision? [p v]
   "Does player collide with a solid tile?"
-  (let [ne (target 0 0)
-        se (target 0 B)
-        sw (target B 0)
-        nw (target B B)]
-    (if (solid? ne) t
-        (solid? se) t
+  (let [nw (target 0 0) ne (target B 0)
+        sw (target 0 B) se (target B B)]
+    (if (solid? nw) t
+        (solid? ne) t
         (solid? sw) t
-        (solid? nw) t
+        (solid? se) t
         f)))
 
 (fn floor? [p v]
