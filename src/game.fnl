@@ -23,6 +23,9 @@
 (fn target [?dx ?dy]
     (addp plr vel ?dx ?dy))
 
+(fn vtarget [?dx ?dy]
+    (addp plr {:x 0 :y vel.y} ?dx ?dy))
+
 (fn decr [map key n]
   (tset map key (- (. map key) n)))
 
@@ -73,8 +76,8 @@
         (set vel.x 0))
 
     ;; Vertical movement
-    (if (or (solid? {:x plr.x :y (+ plr.y vel.y C)})
-            (solid? {:x (+ plr.x B) :y (+ plr.y vel.y C)}))
+    (if (or (solid? (vtarget 0 C))
+            (solid? (vtarget B C)))
         (set vel.y 0)
         (incr vel :y 0.2))
 
