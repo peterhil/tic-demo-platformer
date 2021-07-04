@@ -56,10 +56,10 @@
       (solid? (addp p v B C))))
 
 (fn draw-player [plr ?color]
-  (rect
-   plr.x
-   plr.y
-   C C (or color 12)))
+    (rect plr.x
+          plr.y
+          C C
+          (or color 12)))
 
 (fn _G.TIC []
     ;; Horizontal movement
