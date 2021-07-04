@@ -81,6 +81,10 @@
       (decr vel :y 2.5))
 
     ;; Upward collision
+    (if (and (< vel.y 0)
+             (or (solid? (addp plr vel))
+                 (solid? (addp plr vel B))))
+        (set vel.y 0))
 
     ;; Move player with velocity
     (incr plr :x vel.x)
