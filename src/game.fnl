@@ -20,6 +20,9 @@
   { :x (+ a.x b.x (or ?dx 0))
     :y (+ a.y b.y (or ?dy 0)) })
 
+(fn target [?dx ?dy]
+    (addp plr vel ?dx ?dy))
+
 (fn decr [map key n]
   (tset map key (- (. map key) n)))
 
@@ -41,10 +44,10 @@
 
 (fn collision? [p v]
   "Does player collide with a solid tile?"
-  (let [ne (addp p v 0 0)
-        se (addp p v 0 B)
-        sw (addp p v B 0)
-        nw (addp p v B B)]
+  (let [ne (target 0 0)
+        se (target 0 B)
+        sw (target B 0)
+        nw (target B B)]
     (if (solid? ne) t
         (solid? se) t
         (solid? sw) t
@@ -52,8 +55,8 @@
         f)))
 
 (fn floor? [p v]
-  (or (solid? (addp p v 0 C))
-      (solid? (addp p v B C))))
+  (or (solid? (target 0 C))
+      (solid? (target B C))))
 
 (fn draw-player [plr ?color]
     (rect plr.x
@@ -84,8 +87,8 @@
 
     ;; Upward collision
     (if (and (< vel.y 0)
-             (or (solid? (addp plr vel))
-                 (solid? (addp plr vel B))))
+             (or (solid? (target))
+                 (solid? (target B))))
         (set vel.y 0))
 
     ;; Move player with velocity
