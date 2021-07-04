@@ -54,6 +54,7 @@ function TIC()
 	-- Vertical movement
 	if (solid({ x=p.x,   y=p.y+v.y+8 }) or
 		solid({ x=p.x+7, y=p.y+v.y+8 })) then
+		p.y=((p.y+v.y)//8)*8
 		v.y=0
 	else
 		v.y=v.y+0.2

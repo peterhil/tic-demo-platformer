@@ -77,7 +77,10 @@
 
     ;; Vertical movement
     (if (floored? plr vel)
-        (set vel.y 0)
+        (do
+         ;; fix player y position to avoid corner issue
+         (set plr.y (* (// (+ plr.y vel.y) C) C))
+         (set vel.y 0))
         (incr vel :y 0.2))
 
     ;; Jump
