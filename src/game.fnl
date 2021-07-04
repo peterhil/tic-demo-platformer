@@ -5,7 +5,8 @@
 ;; script: fennel
 
 (local C 8) ; cell size
-(local solids [1 3])
+(local B (- C 1)) ; block size
+(local solids [1])
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
 (local debugging true)
@@ -28,7 +29,7 @@
     (mget x y)))
 
 (lambda contains? [map key]
-  (= nil (. map key)))
+  (not (= nil (. map key))))
 
 (lambda solid? [p]
   "Is the point at solid tile?"
@@ -51,7 +52,10 @@
     ;; Collision?
 
     ;; Vertical movement
-    (incr vel :y 0.2)
+    (if (or (solid? {:x plr.x :y (+ plr.y vel.y C)})
+            (solid? {:x (+ plr.x B) :y (+ plr.y vel.y C)}))
+        (set vel.y 0)
+        (incr vel :y 0.2))
 
     ;; Jump
 
