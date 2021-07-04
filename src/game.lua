@@ -52,8 +52,8 @@ function TIC()
 	end
 
 	-- Vertical movement
-	if (solid({ x=p.x, y=p.y+8+v.y }) or
-		solid({ x=p.x+7, y=p.y+8+v.y })) then
+	if (solid({ x=p.x,   y=p.y+v.y+8 }) or
+		solid({ x=p.x+7, y=p.y+v.y+8 })) then
 		v.y=0
 	else
 		v.y=v.y+0.2
@@ -64,8 +64,8 @@ function TIC()
 
 	-- Upward collision
 	if v.y<0 and
-		(solid({ x=p.x+v.x, y=p.y+v.y }) or
-		 solid({ x=p.x+7+v.x, y=p.y+v.y })) then
+		(solid({ x=p.x+v.x,   y=p.y+v.y }) or
+		 solid({ x=p.x+v.x+7, y=p.y+v.y })) then
 		v.y=0
 	end
 
