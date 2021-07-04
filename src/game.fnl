@@ -20,11 +20,11 @@
   { :x (+ a.x b.x (or ?dx 0))
     :y (+ a.y b.y (or ?dy 0)) })
 
-(lambda decr [map key amount]
-  (tset map key (- (. map key) amount)))
+(lambda decr [map key n]
+  (tset map key (- (. map key) n)))
 
-(lambda incr [map key amount]
-  (tset map key (+ (. map key) amount)))
+(lambda incr [map key n]
+  (tset map key (+ (. map key) n)))
 
 (lambda tile [p]
   "Map tile from point"
