@@ -13,7 +13,7 @@
 
 (local plr {:x 120 :y 68}) ; player
 (local vel {:x 0 :y 0}) ; velocity
-(local debugging true)
+(local debugging f)
 
 (fn addp [a b ?dx ?dy]
   "Add points with additional offsets"
