@@ -55,9 +55,9 @@
         (solid? se) t
         f)))
 
-(fn floor? [p v]
-  (or (solid? (target 0 C))
-      (solid? (target B C))))
+(fn floored? [p v]
+  (or (solid? (vtarget 0 C))
+      (solid? (vtarget B C))))
 
 (fn draw-player [plr ?color]
     (rect plr.x
@@ -76,8 +76,7 @@
         (set vel.x 0))
 
     ;; Vertical movement
-    (if (or (solid? (vtarget 0 C))
-            (solid? (vtarget B C)))
+    (if (floored? plr vel)
         (set vel.y 0)
         (incr vel :y 0.2))
 
@@ -107,7 +106,7 @@
                     :velocity: " " vel.x ", " vel.y "\n"
                     :tile: " " (tile plr) "\n"
                     :solid: " " (if (solid? plr) "true" "false") "\n"
-                    :floor: " " (if (floor? plr vel) "true" "false") "\n"
+                    :floored: " " (if (floored? plr vel) "true" "false") "\n"
                     )))))
 
 ;; <MAP>
