@@ -15,31 +15,31 @@
 (local vel {:x 0 :y 0}) ; velocity
 (local debugging true)
 
-(lambda addp [a b ?dx ?dy]
+(fn addp [a b ?dx ?dy]
   "Add points with additional offsets"
   { :x (+ a.x b.x (or ?dx 0))
     :y (+ a.y b.y (or ?dy 0)) })
 
-(lambda decr [map key n]
+(fn decr [map key n]
   (tset map key (- (. map key) n)))
 
-(lambda incr [map key n]
+(fn incr [map key n]
   (tset map key (+ (. map key) n)))
 
-(lambda tile [p]
+(fn tile [p]
   "Map tile from point"
   (let [x (// p.x C)
         y (// p.y C)]
     (mget x y)))
 
-(lambda contains? [map key]
+(fn contains? [map key]
   (not (= nil (. map key))))
 
-(lambda solid? [p]
+(fn solid? [p]
   "Is the point at solid tile?"
   (contains? solids (tile p)))
 
-(lambda collision? [p v]
+(fn collision? [p v]
   "Does player collide with a solid tile?"
   (let [ne (addp p v 0 0)
         se (addp p v 0 B)
@@ -51,11 +51,11 @@
         (solid? nw) t
         f)))
 
-(lambda floor? [p v]
+(fn floor? [p v]
   (or (solid? (addp p v 0 C))
       (solid? (addp p v B C))))
 
-(lambda draw-player [plr ?color]
+(fn draw-player [plr ?color]
   (rect
    plr.x
    plr.y
